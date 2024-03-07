@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Library</title>
+    <!-- Include Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Online Library</h1>
+        <div v-if="loggedIn">
+            <h2>Welcome, {{ user.userName }}!</h2>
+            <button @click="logout">Logout</button>
+            <div v-for="book in books" :key="book.isbn">
+                <h3>{{ book.name }}</h3>
+                <p>Author: {{ book.author }}</p>
+                <button @click="borrowBook(book.isbn)">Borrow</button>
+            </div>
+        </div>
+        <div v-else>
+            <h2>Login</h2>
+            <input type="text" v-model="phoneNumber" placeholder="Phone Number">
+            <input type="password" v-model="password" placeholder="Password">
+            <button @click="login">Login</button>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                loggedIn: false,
+                user: {},
+                phoneNumber: '',
+                password: '',
+                books: [] // Assuming books are fetched from backend
+            },
+            methods: {
+                login: function() {
+                    // Implement login functionality using AJAX or fetch API
+                    // After successful login, set loggedIn to true and fetch user data
+                },
+                logout: function() {
+                    // Implement logout functionality
+                    // Set loggedIn to false and clear user data
+                },
+                borrowBook: function(isbn) {
+                    // Implement borrow book functionality
+                    // Use AJAX or fetch API to send borrow request to backend
+                }
+            }
+        });
+    </script>
+</body>
+</html>
